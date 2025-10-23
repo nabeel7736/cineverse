@@ -1,0 +1,19 @@
+{{ define "content" }}
+<header>My Bookings</header>
+<table border="1" cellpadding="10" cellspacing="0" style="width:100%; background:white; border-radius:10px;">
+  <tr style="background:#fbc531;">
+    <th>Movie</th>
+    <th>Date</th>
+    <th>Seats</th>
+    <th>Status</th>
+  </tr>
+  {{ range .bookings }}
+  <tr>
+    <td>{{ .MovieTitle }}</td>
+    <td>{{ .Date }}</td>
+    <td>{{ .Seats }}</td>
+    <td>{{ .Status }}</td>
+  </tr>
+  {{ end }}
+</table>
+{{ end }}

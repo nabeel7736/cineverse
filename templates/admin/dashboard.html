@@ -1,0 +1,14 @@
+{{ define "content" }}
+<header>Admin Dashboard</header>
+<div style="display:flex; gap:20px;">
+  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
+    <h3>Total Movies: {{ .TotalMovies }}</h3>
+  </div>
+  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
+    <h3>Total Bookings: {{ .TotalBookings }}</h3>
+  </div>
+  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
+    <h3>Users Registered: {{ .TotalUsers }}</h3>
+  </div>
+</div>
+{{ end }}

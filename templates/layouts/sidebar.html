@@ -1,0 +1,94 @@
+{{ define "sidebar" }}
+<style>
+  .sidebar {
+    width: 230px;
+    background: #1e272e;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.3);
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #fbc531;
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .sidebar .menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar a {
+    color: #dcdde1;
+    text-decoration: none;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+  }
+
+  .sidebar a:hover {
+    background: #fbc531;
+    color: #1e272e;
+    border-radius: 8px;
+    padding-left: 26px;
+  }
+
+  .sidebar a.active {
+    background: #fbc531;
+    color: #1e272e;
+    border-radius: 8px;
+  }
+
+  .sidebar .bottom {
+    margin-top: auto;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+  }
+
+  .sidebar .icon {
+    width: 18px;
+    text-align: center;
+  }
+
+  /* Simple hover animation */
+  .sidebar a:hover .icon {
+    transform: scale(1.1);
+  }
+</style>
+
+<div class="sidebar">
+  <h2>🎬 CineVerse</h2>
+  
+  <div class="menu">
+    <a href="/movies" class="{{ if eq .ActivePage "movies" }}active{{ end }}">
+      <span class="icon">📺</span> Movies
+    </a>
+    <a href="/bookings" class="{{ if eq .ActivePage "bookings" }}active{{ end }}">
+      <span class="icon">🎟</span> My Bookings
+    </a>
+    <a href="/admin/dashboard" class="{{ if eq .ActivePage "admin" }}active{{ end }}">
+      <span class="icon">⚙️</span> Admin Dashboard
+    </a>
+    <a href="/admin/movies/add" class="{{ if eq .ActivePage "addmovie" }}active{{ end }}">
+      <span class="icon">➕</span> Add Movie
+    </a>
+  </div>
+
+  <div class="bottom">
+    <a href="/logout">
+      <span class="icon">🚪</span> Logout
+    </a>
+  </div>
+</div>
+{{ end }}

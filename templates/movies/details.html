@@ -1,0 +1,12 @@
+{{ define "content" }}
+<header>{{ .movie.Title }}</header>
+<div style="display:flex; gap:40px;">
+  <img src="{{ .movie.Poster }}" alt="{{ .movie.Title }}" style="width:300px; border-radius:10px;">
+  <div>
+    <p><strong>Genre:</strong> {{ .movie.Genre }}</p>
+    <p><strong>Duration:</strong> {{ .movie.Duration }}</p>
+    <p><strong>Description:</strong> {{ .movie.Description }}</p>
+    <a href="/movies/book/{{ .movie.ID }}" class="btn">Book Ticket</a>
+  </div>
+</div>
+{{ end }}

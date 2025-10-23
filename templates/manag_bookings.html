@@ -1,0 +1,31 @@
+{{ define "content" }}
+<header>Manage Bookings</header>
+<table border="1" cellpadding="10" cellspacing="0" style="width:100%; background:white;">
+  <tr style="background:#fbc531;">
+    <th>User</th>
+    <th>Movie</th>
+    <th>Date</th>
+    <th>Seats</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  {{ range .bookings }}
+  <tr>
+    <td>{{ .UserEmail }}</td>
+    <td>{{ .MovieTitle }}</td>
+    <td>{{ .Date }}</td>
+    <td>{{ .Seats }}</td>
+    <td>{{ .Status }}</td>
+    <td>
+      <form method="POST" action="/admin/bookings/update/{{ .ID }}">
+        <select name="status">
+          <option value="Confirmed">Confirmed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+        <button class="btn" type="submit">Update</button>
+      </form>
+    </td>
+  </tr>
+  {{ end }}
+</table>
+{{ end }}

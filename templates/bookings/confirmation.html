@@ -1,0 +1,8 @@
+{{ define "content" }}
+<header>Booking Confirmation</header>
+<p>Thank you for booking <strong>{{ .movie.Title }}</strong>!</p>
+<p>Your seats: {{ .booking.Seats }}</p>
+<p>Date: {{ .booking.Date }}</p>
+<p>Status: Confirmed ✅</p>
+<a href="/bookings" class="btn">View My Bookings</a>
+{{ end }}

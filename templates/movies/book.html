@@ -1,0 +1,17 @@
+<!-- {{ define "content" }}
+<header>Book Tickets for {{ .movie.Title }}</header>
+<form method="POST" action="/book/{{ .movie.ID }}">
+  <label>Select Date:</label><br>
+  <input type="date" name="date" required><br><br>
+  <label>Number of Seats:</label><br>
+  <input type="number" name="seats" min="1" required><br><br>
+  <button class="btn" type="submit">Confirm Booking</button>
+</form>
+{{ end }} -->
+
+<h2>Welcome, User ID: {{ .user_id }}</h2>
+<p>You are logged in!</p>
+<form action="/logout" method="post">
+  <button type="submit">Logout</button>
+</form>
+

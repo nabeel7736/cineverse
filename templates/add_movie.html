@@ -1,0 +1,16 @@
+{{ define "content" }}
+<header>Add New Movie</header>
+<form method="POST" action="/admin/movies/add">
+  <label>Title:</label><br>
+  <input type="text" name="title" required><br><br>
+  <label>Genre:</label><br>
+  <input type="text" name="genre" required><br><br>
+  <label>Duration:</label><br>
+  <input type="text" name="duration" required><br><br>
+  <label>Poster URL:</label><br>
+  <input type="text" name="poster" required><br><br>
+  <label>Description:</label><br>
+  <textarea name="description" required></textarea><br><br>
+  <button class="btn" type="submit">Add Movie</button>
+</form>
+{{ end }}
