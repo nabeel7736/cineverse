@@ -18,5 +18,4 @@ type User struct {
 	CreatedAt    time.Time      `gorm:"autocreatetime" json:"created_at"`
 	UpdateAt     time.Time      `gorm:"autoupdatetime" json:"update_at"`
 	DeletedAt    gorm.DeletedAt `gorm:"index" json:"-"`
-	RefreshToken string         `gorm:"type:text"`
 }

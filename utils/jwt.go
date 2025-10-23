@@ -10,7 +10,15 @@ import (
 	// "github.com/golang-jwt/jwt/v5"
 )
 
-var jwtSecret = []byte("cineverse_secret_key")
+var jwtSecret []byte
+
+func init() {
+	secret := os.Getenv("JWT_SECRET")
+	if secret == "" {
+		secret = "cineverse_secret_key"
+	}
+	jwtSecret = []byte(secret)
+}
 
 // Claims struct
 type Claims struct {
@@ -31,26 +39,6 @@ func CreateAccessToken(userID uint) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(jwtSecret)
 }
-
-// Refresh token (7 days)
-// func CreateRefreshToken(userID uint) (string, error) {
-// 	// expirationTime := time.Now().Add(7 * 24 * time.Hour)
-// 	// claims := &Claims{
-// 	// 	UserID: userID,
-// 	// 	RegisteredClaims: jwt.RegisteredClaims{
-// 	// 		ExpiresAt: jwt.NewNumericDate(expirationTime),
-// 	// 		IssuedAt:  jwt.NewNumericDate(time.Now()),
-// 	// 	},
-// 	// }
-
-// 	claims := jwt.MapClaims{
-// 		"user_id": userID,
-// 		"exp":     time.Now().Add(time.Hour * 24 * 7).Unix(),
-// 	}
-
-// 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-// 	return token.SignedString(jwtSecret)
-// }
 
 func CreateRefreshToken(userID uint) (string, error) {
 	refreshSecret := os.Getenv("REFRESH_SECRET")
@@ -115,16 +103,11 @@ func ValidateRefreshToken(tokenStr string) (jwt.MapClaims, error) {
 }
 
 func ValidateAccessToken(tokenStr string) (jwt.MapClaims, error) {
-	accessSecret := os.Getenv("JWT_SECRET")
-	if accessSecret == "" {
-		return nil, errors.New("missing JWT_SECRET environment variable")
-	}
-
 	token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) {
 		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
 		}
-		return []byte(accessSecret), nil
+		return jwtSecret, nil
 	})
 
 	if err != nil {

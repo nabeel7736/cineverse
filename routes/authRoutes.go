@@ -18,14 +18,6 @@ func AuthRoute(rg *gin.RouterGroup, db *gorm.DB) {
 
 	rg.POST("/logout", middlewares.AuthMiddleware(), controllers.LogoutHandler(db))
 
-	rg.GET("/movies", middlewares.AuthMiddleware(), func(ctx *gin.Context) {
-
-		userID, _ := ctx.Get("user_id")
-		ctx.HTML(200, "movies/book.html", gin.H{
-			"title":      "Profile",
-			"user_id":    userID,
-			"ActivePage": "profile",
-		})
-	})
+	rg.GET("/movies", middlewares.AuthMiddleware(), controllers.GetAllMovies(db))
 
 }

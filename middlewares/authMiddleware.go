@@ -8,28 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// func AuthMiddleware() gin.HandlerFunc {
-// 	return func(ctx *gin.Context) {
-// 		token := ctx.GetHeader("Authorization")
-// 		if token == "" {
-// 			ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Auhtorization token missing"})
-// 			// ctx.Redirect(http.StatusSeeOther, "/login")
-// 			ctx.Abort()
-// 			return
-// 		}
-
-// 		claims, err := utils.ParseToken(token)
-// 		if err != nil {
-
-// 			// ctx.Redirect(http.StatusSeeOther, "/login")
-// 			ctx.Abort()
-// 			return
-// 		}
-// 		ctx.Set("user_id", claims.UserID)
-// 		ctx.Next()
-// 	}
-// }
-
 func AuthMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.GetHeader("Authorization")

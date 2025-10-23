@@ -10,6 +10,8 @@ func MigrateAll() {
 		&models.User{},
 		&models.OTP{},
 		&models.RefreshToken{},
+		&models.Movie{},
+		&models.Booking{},
 	)
 	if err != nil {
 		fmt.Println("Migration Failed", err)

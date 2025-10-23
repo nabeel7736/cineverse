@@ -17,6 +17,8 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 
 	api := r.Group("/")
 	AuthRoute(api, db)
+	MovieRoutes(api, db)
+	AdminRoutes(api, db)
 
 	// other route groups will be added here (movies, admin, booking etc.)
 	return r
