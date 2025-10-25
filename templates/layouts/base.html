@@ -61,14 +61,7 @@
   </style>
 </head>
 <body>
-   {{ template "sidebar" . }}
-  <div class="sidebar">
-    <h2>CineVerse</h2>
-    <a href="/movies">🎬 Movies</a>
-    <a href="/bookings">🎟 My Bookings</a>
-    <a href="/admin/dashboard">⚙️ Admin</a>
-    <a href="/logout">🚪 Logout</a>
-  </div>
+  {{ template "layouts/sidebar" . }}
 
   <div class="main-content">
     {{ template "content" . }}

@@ -34,10 +34,15 @@ func GetAllMovies(db *gorm.DB) gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch movies"})
 			return
 		}
+		if c.GetHeader("Accept") == "application/json" {
+			c.JSON(http.StatusOK, movies)
+			return
+		}
 
 		c.HTML(http.StatusOK, "movies/movies.html", gin.H{
-			"title":  "All Movies",
-			"movies": movies,
+			"title":      "All Movies",
+			"movies":     movies,
+			"ActivePage": "movies",
 		})
 	}
 }

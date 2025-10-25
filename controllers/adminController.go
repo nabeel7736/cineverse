@@ -18,7 +18,7 @@ func AdminDashboard(db *gorm.DB) gin.HandlerFunc {
 		db.Model(&models.Booking{}).Count(&totalBookings)
 		db.Model(&models.User{}).Count(&totalUsers)
 
-		c.HTML(http.StatusOK, "base.html", gin.H{
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"title":         "Admin Dashboard",
 			"TotalMovies":   totalMovies,
 			"TotalBookings": totalBookings,

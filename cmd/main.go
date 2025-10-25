@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	config.Loadenv()
 	config.ConnectDatabase()
 
 	config.MigrateAll()

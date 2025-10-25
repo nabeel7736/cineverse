@@ -1,14 +1,48 @@
 {{ define "content" }}
-<header>Admin Dashboard</header>
-<div style="display:flex; gap:20px;">
-  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
-    <h3>Total Movies: {{ .TotalMovies }}</h3>
+<header>
+  <h1>Admin Dashboard</h1>
+</header>
+
+<div class="dashboard">
+  <div class="card">
+    <h2>{{ .TotalMovies }}</h2>
+    <p>Total Movies</p>
   </div>
-  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
-    <h3>Total Bookings: {{ .TotalBookings }}</h3>
+  <div class="card">
+    <h2>{{ .TotalUsers }}</h2>
+    <p>Total Users</p>
   </div>
-  <div style="background:white; padding:20px; border-radius:10px; flex:1;">
-    <h3>Users Registered: {{ .TotalUsers }}</h3>
+  <div class="card">
+    <h2>{{ .TotalBookings }}</h2>
+    <p>Total Bookings</p>
   </div>
 </div>
+
+<style>
+  .dashboard {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .card h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #555;
+  }
+  .card p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 5px;
+  }
+</style>
 {{ end }}
+
+{{ template "base.html" . }}

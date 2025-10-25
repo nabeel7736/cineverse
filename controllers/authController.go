@@ -12,7 +12,7 @@ import (
 )
 
 func ShowRegisterpage(c *gin.Context) {
-	c.HTML(http.StatusOK, "register.html", gin.H{"title": "Register"})
+	c.HTML(http.StatusOK, "register.html", gin.H{"title": "Register", "ActivePage": "register"})
 }
 
 func ShowLoginPage(c *gin.Context) {
@@ -64,7 +64,7 @@ func RegisterHandler(db *gorm.DB) gin.HandlerFunc {
 			PasswordHash: hashed,
 			Role:         "user",
 			IsVerified:   false,
-			IsBLocked:    false,
+			IsBlocked:    false,
 		}
 
 		if err := db.Create(&user).Error; err != nil {
@@ -167,5 +167,6 @@ func LogoutHandler(db *gorm.DB) gin.HandlerFunc {
 		ctx.SetCookie("user_name", "", -1, "/", "", false, false)
 
 		ctx.JSON(http.StatusOK, gin.H{"message": "Logout successful"})
+		ctx.Redirect(http.StatusSeeOther, "/login")	
 	}
 }

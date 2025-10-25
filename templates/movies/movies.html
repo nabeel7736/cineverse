@@ -1,28 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{.title}}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">🎬 Available Movies</h2>
-    <div class="row">
-        {{range .movies}}
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <img src="{{.PosterURL}}" class="card-img-top" alt="Poster">
-                <div class="card-body">
-                    <h5 class="card-title">{{.Title}}</h5>
-                    <p class="card-text">{{.Genre}} | {{.Language}}</p>
-                    <p><small>Released: {{.ReleaseDate.Format "2006-01-02"}}</small></p>
-                    <a href="#" class="btn btn-primary w-100">Book Ticket</a>
-                </div>
-            </div>
-        </div>
-        {{end}}
+{{ define "content" }}
+<header>
+  <h1>🎬 Available Movies</h1>
+</header>
+
+<div class="movies-grid">
+  {{range .movies}}
+  <div class="movie-card">
+    <img src="{{.PosterURL}}" alt="Poster" class="movie-poster">
+    <div class="movie-info">
+      <h3>{{.Title}}</h3>
+      <p>{{.Genre}} | {{.Language}}</p>
+      <p><small>Released: {{.ReleaseDate.Format "2006-01-02"}}</small></p>
+      <a href="#" class="btn">Book Ticket</a>
     </div>
+  </div>
+  {{end}}
 </div>
-</body>
-</html>
+
+<style>
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .movie-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .movie-card:hover {
+    transform: translateY(-5px);
+  }
+  .movie-poster {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .movie-info {
+    padding: 15px;
+  }
+  .movie-info h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  .movie-info p {
+    margin: 5px 0;
+    color: #666;
+  }
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #fbc531;
+    color: #1e272e;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  .btn:hover {
+    background: #e1a025;
+  }
+</style>
+{{ end }}
+
+{{ template "layouts/base.html" . }}
